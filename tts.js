@@ -37,7 +37,8 @@ var TTS;
 		init: function(){
 			this.el = $(document.createElement('iframe'));
 			this.el.attr({
-				src: 'javascript:false'
+				src: 'about:blank',
+				rel: 'noreferrer'
 			}).css({
 				display: 'none'
 			});

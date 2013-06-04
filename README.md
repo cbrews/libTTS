@@ -19,7 +19,7 @@ libTTS creates a global variable `TTS`.  Please check you namespaces!
 
 ### TTS.say()
 
-`say(text)` - pass a string to the text-to-speech engine.
+`TTS.say(text)` - pass a string to the text-to-speech engine.
 
 ````javascript
 TTS.say("Hello, World!");
