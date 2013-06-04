@@ -10,7 +10,7 @@ This library encapsulates an `<iframe>` that loads the Google Translate Text-To-
 Examples
 --------
 
-Please see sample.html for examples
+Check out http://crobias.github.io/libTTS/ for use!
 
 Docs
 ----
