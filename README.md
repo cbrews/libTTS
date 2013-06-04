@@ -1,6 +1,8 @@
 libTTS
 ======
 
+__NOTE: Unfortunately, initial testing seemed to indicate that this solution would work, but further testing on an actual webpage indicates that the iframe sends a referrer header, which causes the request to google translate to fail.  I think there are still some cases where it works, but the results are not consistent.  At this point, I am not confident to state that this solution is a works.  I'll leave the code up in case someone wants to play with this some more.__
+
 libTTS is portable and simple text-to-speech library powered by Google Translate's Text-To-Speech service.
 
 [Google Translate](http://translate.google.com/) already provides a full-fledged text-to-speech service for dynamically creating short text-to-speech files.  However, due to restrictions of the service, it is not possible to play these files on external websites; a request to the text-to-speech API will give you a 404.  More information on these restrictions can be found [here](http://stackoverflow.com/questions/12883330/request-to-google-text-to-speech-api).
