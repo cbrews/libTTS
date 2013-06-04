@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>libTTS</title>
+	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+	<style>header,footer{margin-top:4em}.container{margin-top:2em}textarea{width:300px}</style>
+</head>
+<body>
+
+<header class="text-center">
+	<h1>libTTS</h1>
+	<p>
+		A <span class="text-success">portable</span> and <span class="text-warning">simple</span> text-to-speech library powered by
+		<a href="http://translate.google.com/">Google Translate</a>'s Text-To-Speech service.
+		<a id="read-preview" href="javascript:void(0)"><i class="icon-volume-up"></i></a>
+	</p>
+</header>
+	
+<div class="container text-center">
+	<form id="tts-form">
+		<fieldset>
+			<textarea name="text" rows="4" placeholder="What do you want to say?"></textarea>
+			<p class="chars-left muted">100 characters left.</p>
+			<div>
+				<button type="submit" class="btn">Say It!</button>
+			</div>
+		</fieldset>
+	</form>
+	
+	<h4>Like what you hear? <a href="https://github.com/christhebrews/libTTS">Go get it!</a></h4>
+
+</div>
+
+<footer class="text-center">
+	<small class="muted">Created by <a href="https://twitter.com/christhebrews">Chris Brousseau</a>. <a href="https://github.com/christhebrews/libTTS/blob/master/LICENSE">2013</a>.</small>
+</footer>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://raw.github.com/christhebrews/libTTS/master/tts.js"></script>
+<script>
+// Here are some examples of how to use this!
+jQuery(document).ready(function($){
+
+	// Sample 1: use TTS.say() to say anything!
+	$("#read-preview").click(function(){
+		TTS.say("A portable and simple text-to-speech library powered by Google Translate's Text-To-Speech service");
+	});
+
+	// Sample 2: have a form use TTS.say()
+	$('#tts-form').submit(function(e){
+		var textField = $(this.text);
+		TTS.say(textField.val());
+		return false;
+	});
+	
+	// Sample 3: Read TTS.maxLength to display how many characters remain!
+	function getRemainingCharacters(){
+		var charsRemaining = TTS.maxLength - $("#tts-form textarea").val().length;
+		
+		$("#tts-form .chars-left").html(charsRemaining + " characters left.");
+		if(charsRemaining < 0){
+			$("#tts-form .chars-left").addClass("text-error");
+			$("#tts-form button").attr("disabled", "disabled");
+		} else if(charsRemaining == TTS.maxLength){
+			$("#tts-form button").attr("disabled", "disabled");
+		} else {
+			$("#tts-form .chars-left").removeClass("text-error");
+			$("#tts-form button").removeAttr("disabled");
+		}
+	}
+	$('#tts-form textarea').keyup(getRemainingCharacters);
+	$('#tts-form textarea').keydown(getRemainingCharacters);
+	getRemainingCharacters();
+});
+</script>
+</body>
+</html>
